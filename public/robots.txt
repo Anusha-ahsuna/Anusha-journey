@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anusha-journey.vercel.app/
