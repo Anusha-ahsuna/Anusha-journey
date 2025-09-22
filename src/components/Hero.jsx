@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const [isContactOpen, setIsContactOpen] = useState(false);
   return (
     <section id="hero" className="w-full min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 relative overflow-hidden flex items-center justify-center px-4 py-6">
       {/* Animated Background Elements */}
@@ -102,6 +105,12 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={() => {
+                const el = document.getElementById('journey');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
             >
               🚀 View My Journey
             </motion.button>
@@ -109,6 +118,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-black transition-all duration-300"
+              onClick={() => setIsContactOpen(true)}
             >
               📬 Get In Touch
             </motion.button>
@@ -182,6 +192,82 @@ const Hero = () => {
           <div className="text-2xl">⬇️</div>
         </div>
       </motion.div>
+      {/* Contact Modal */}
+      {isContactOpen && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsContactOpen(false)}
+          />
+          {/* Modal */}
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            className="relative z-10 w-11/12 max-w-md rounded-2xl bg-gradient-to-b from-gray-900 to-gray-800 border border-white/10 p-6 text-white shadow-2xl"
+            initial={{ scale: 0.9, y: 20, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setIsContactOpen(false)}
+              className="absolute top-3 right-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors p-2"
+              aria-label="Close"
+            >
+              ✖
+            </button>
+            <div className="text-center mb-4">
+              <div className="text-2xl font-extrabold">Get in touch</div>
+              <div className="text-gray-300 mt-1">Connect with me on your favorite platform</div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <a
+                href="https://www.instagram.com/learn.with.shas/"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-pink-400/40 bg-pink-500/10 px-4 py-3 hover:bg-pink-500/20 transition-colors"
+              >
+                <span className="text-2xl">📸</span>
+                <span className="font-semibold">Instagram</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/anusha2105"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-green-400/40 bg-green-500/10 px-4 py-3 hover:bg-green-500/20 transition-colors"
+              >
+                <span className="text-2xl">💬</span>
+                <span className="font-semibold">LinkedIn</span>
+              </a>
+              <a
+                href="https://youtube.com/@learnwithshas?si=mfghGMsOQ_XgyvZx"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-3 hover:bg-red-500/20 transition-colors"
+              >
+                <span className="text-2xl">▶️</span>
+                <span className="font-semibold">YouTube</span>
+              </a>
+              <a
+                href="https://github.com/Anusha-ahsuna"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-slate-400/40 bg-slate-500/10 px-4 py-3 hover:bg-slate-500/20 transition-colors"
+              >
+                <span className="text-2xl">🐙</span>
+                <span className="font-semibold">GitHub</span>
+              </a>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   );
 };

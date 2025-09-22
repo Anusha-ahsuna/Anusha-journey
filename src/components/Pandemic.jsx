@@ -9,7 +9,7 @@ const PandemicChapter = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-20 px-6 relative overflow-hidden">
+    <section id="journey" className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-20 px-6 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-600 to-purple-600 transform rotate-12 scale-150"></div>
